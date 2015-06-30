@@ -1,4 +1,5 @@
 require 'capybara/rspec'
+require 'database_cleaner'
 
 ENV['RACK_ENV'] = 'test'
 
@@ -106,4 +107,17 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+
 end
