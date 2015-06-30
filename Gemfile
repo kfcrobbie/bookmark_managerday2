@@ -5,15 +5,12 @@ source "https://rubygems.org"
 ruby '2.2.2'
 
 gem 'shotgun'
+gem 'data_mapper'
+gem 'dm-postgres-adapter'
+gem 'rspec'
+gem 'rspec-sinatra'
+gem 'sinatra'
+gem 'capybara'
+gem 'byebug'
+gem 'database_cleaner'
 
-group :test do 
-  gem 'data_mapper'
-  gem 'dm-postgres-adapter'
-  gem 'rspec'
-  gem 'rspec-sinatra'
-  gem 'sinatra'
-  gem 'capybara'
-  gem 'byebug'
-  gem 'database_cleaner'
-
-end
