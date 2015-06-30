@@ -4,6 +4,8 @@ source "https://rubygems.org"
 # gem "rails"
 ruby '2.2.2'
 
+gem 'rackup'
+
 group :test do 
   gem 'data_mapper'
   gem 'dm-postgres-adapter'
