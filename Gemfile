@@ -4,7 +4,7 @@ source "https://rubygems.org"
 # gem "rails"
 ruby '2.2.2'
 
-gem 'rackup'
+gem 'shotgun'
 
 group :test do 
   gem 'data_mapper'
