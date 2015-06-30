@@ -5,8 +5,12 @@ source "https://rubygems.org"
 ruby '2.2.2'
 
 group :test do 
+  gem 'data_mapper'
+  gem 'dm-postgres-adapter'
   gem 'rspec'
   gem 'rspec-sinatra'
+  gem 'sinatra'
   gem 'capybara'
   gem 'byebug'
+
 end
