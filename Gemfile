@@ -13,4 +13,6 @@ gem 'sinatra'
 gem 'capybara'
 gem 'byebug'
 gem 'database_cleaner'
+gem 'bcrypt'
+gem 'sinatra-flash'
 
