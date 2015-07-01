@@ -15,4 +15,5 @@ gem 'byebug'
 gem 'database_cleaner'
 gem 'bcrypt'
 gem 'sinatra-flash'
+gem 'factory_girl'
 
