@@ -18,11 +18,29 @@ feature 'User sign up' do
     expect(User.first.email).to eq('alice@example.com')
   end
 
-  scenario 'With an email that is already registered' do
-    sign_up
-    expect { sign_up }.to change(User, :count).by(0)
-    expect(page).to have_content('Sorry, there were the following problems with the form.')
+  scenario 'With a password that does not match' do
+    @user.password_confirmation= 'wrong'
+    expect { sign_up(@user) }.not_to change(User, :count)
+    expect(current_path).to eq('/users') # current_path is a helper provided by Capybara
+    expect(page).to have_content('Sorry, your passwords do not match')
   end
 
-  scenario 'With a password that does not match' do
+  scenario 'With an email that is already registered' do
+    sign_up(@user)
+    expect { sign_up(@user) }.to change(User, :count).by(0)
+    expect(page).to have_content('This email is already taken')
+  end
 
+  def sign_up(user)
+    visit '/users/new'
+    fill_in :email, with: user.email
+    fill_in :password, with: user.password
+    fill_in :password_confirmation, with: user.password_confirmation
+    click_button 'Sign up'
+  end
+
+  def user_attributes
+    {email: 'alice@example.com', password: '12345678', password_confirmation: '12345678'}
+  end
+
+end
