@@ -24,11 +24,9 @@ feature 'User sign up' do
   end
 
   scenario 'With a password that does not match' do
-    user = create(:user, password_confirmation: 'wrong')
+    user = create(:user, password_confirmation: 'wrong') #This creates a user as per factory girl settings, but with password conf set to wrong
     visit '/users/new'
-    fill_in :email, with: user.email
-    fill_in :password, with: user.password
-    fill_in :password_confirmation, with: 'wrong'
+    fill_in_forms(user)
     expect { click_button 'Sign up' }.not_to change(User, :count)
     expect(current_path).to eq('/users') # current_path is a helper provided by Capybara
     expect(page).to have_content('Sorry, your passwords do not match')
@@ -36,15 +34,12 @@ feature 'User sign up' do
 
   def sign_up
     user = build :user
-    # (email: 'alice@example.com',
-    #             password: '12345678',
-    #             password_confirmation: '12345678')
     visit '/users/new'
-    params(user)
+    fill_in_forms(user)
     click_button 'Sign up'
   end
 
-  def params (user)
+  def fill_in_forms (user)
     fill_in :email, with: user.email
     fill_in :password, with: user.password
     fill_in :password_confirmation, with: user.password_confirmation
