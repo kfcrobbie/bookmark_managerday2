@@ -57,7 +57,7 @@ class BookmarkManager < Sinatra::Base
       # we'll show the same
       # form again
     else
-      flash.now[:notice] = 'Sorry, your passwords do not match'
+      flash.now[:errors] = @user.errors.full_messages
       erb :'users/new'
     end
   end
